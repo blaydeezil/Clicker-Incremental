@@ -17,7 +17,7 @@
       text-decoration: underline;
       cursor: pointer;
     }
-    #app, #loading, #error, #launch {
+    #app, #error, #launch {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -88,27 +88,23 @@
   </style>
 </head>
 <body>
-  <div id="loading" class="screen">
-    <div class="loading-text">Loading Clicker Incremental...</div>
+  <div id="app" class="screen">
+    <h1>Clicker Incremental</h1>
+    <div id="counter" style="font-size:2rem; margin:1em;">0</div>
+    <button id="clickBtn" style="font-size:1.5rem; padding:0.5em 1em; cursor:pointer;">Click Me!</button>
     <noscript>
       <div style="color: #fff; background: #c00; padding: 1em; border-radius: 4px;">This game requires JavaScript. Please enable JavaScript in your browser.</div>
     </noscript>
   </div>
   <script>
-    // Global JSON.parse error handler for robustness
-    window._originalJSONParse = JSON.parse;
-    JSON.parse = function(str) {
-      try { return window._originalJSONParse(str); }
-      catch (e) {
-        console.warn("Invalid JSON passed to JSON.parse:", str, e);
-        return {};
-      }
+    // Simple clicker game logic (ES5)
+    var count = 0;
+    var counterDiv = document.getElementById('counter');
+    var clickBtn = document.getElementById('clickBtn');
+    clickBtn.onclick = function() {
+      count += 1;
+      counterDiv.innerHTML = count;
     };
-  </script>
-  <!-- Bundled/minified app script (do not touch) -->
-  <script>
-    /*! ...existing bundled script... */
-    // ...existing code...
   </script>
 </body>
 </html>
